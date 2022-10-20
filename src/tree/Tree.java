@@ -100,7 +100,7 @@ public class Tree {
         }
     }
 
-    public void recorridoPreOrden() {
+    public void preorderTraversal() {
         Stack<Node> pila = new Stack<>();
         pila.add(root);
         while (!pila.isEmpty()) { // mientras la Stack<Integer> no este vacia.
@@ -115,8 +115,8 @@ public class Tree {
         }
     }
 
-    public void recorridoInOrden() {
-        Stack<Node> pila = new Stack<Node>();
+    public void inorderTraversal() {
+        Stack<Node> pila = new Stack<>();
         pila.add(null);
         Node X = root;
         while (!pila.isEmpty()) { // mientras la pila de nodos no sea vacia
@@ -132,8 +132,8 @@ public class Tree {
         }
     }
 
-    public void recorridoPostOrden() {
-        Stack<Node> pila = new Stack<Node>();
+    public void postorderTraversal() {
+        Stack<Node> pila = new Stack<>();
         Node X = root;
         pila.add(null);
         while (!pila.isEmpty()) {
@@ -156,26 +156,26 @@ public class Tree {
         }
     }
 
-    public void recorridoPreOrden(Node X) {
+    public void preorderTraversal(Node X) {
         if (X != null) {
             System.out.print(" " + X.getValue());
-            recorridoPreOrden(X.getLeft());
-            recorridoPreOrden(X.getRight());
+            preorderTraversal(X.getLeft());
+            preorderTraversal(X.getRight());
         }
     }
 
-    public void recorridoInOrden(Node X) {
+    public void inorderTraversal(Node X) {
         if (X != null) {
-            recorridoInOrden(X.getLeft());
+            inorderTraversal(X.getLeft());
             System.out.print(" " + X.getValue());
-            recorridoInOrden(X.getRight());
+            inorderTraversal(X.getRight());
         }
     }
 
-    public void recorridoPostOrden(Node X) {
+    public void postorderTraversal(Node X) {
         if (X != null) {
-            recorridoPostOrden(X.getLeft());
-            recorridoPostOrden(X.getRight());
+            postorderTraversal(X.getLeft());
+            postorderTraversal(X.getRight());
             System.out.print(" " + X.getValue());
         }
     }
@@ -232,8 +232,8 @@ public class Tree {
     }
 
     public Node exist(int value) {
-        Stack<Node> nivel = new Stack<Node>();
-        Stack<Node> desc = new Stack<Node>();
+        Stack<Node> nivel = new Stack<>();
+        Stack<Node> desc = new Stack<>();
         if (!isEmpty()) {
             nivel.add(root);
         }
@@ -261,10 +261,10 @@ public class Tree {
      * @param Z
      */
     public void esIgual(Tree Z) {
-        Stack<Node> niv1 = new Stack<Node>();
-        Stack<Node> niv2 = new Stack<Node>();
-        Stack<Node> des1 = new Stack<Node>();
-        Stack<Node> des2 = new Stack<Node>();
+        Stack<Node> niv1 = new Stack<>();
+        Stack<Node> niv2 = new Stack<>();
+        Stack<Node> des1 = new Stack<>();
+        Stack<Node> des2 = new Stack<>();
         boolean sw = true;
         if (!isEmpty() && !Z.isEmpty()) {
             niv1.add(root);
@@ -310,13 +310,10 @@ public class Tree {
 
     /**
      * Obtiene el padre de cualquier nodo
-     *
-     * @param X
-     * @return
      */
     public Node getPadre(Node X) {
-        Stack<Node> nodosNivel = new Stack<Node>();
-        Stack<Node> nodosDescendientes = new Stack<Node>();
+        Stack<Node> nodosNivel = new Stack<>();
+        Stack<Node> nodosDescendientes = new Stack<>();
         nodosNivel.add(root);
         while (!nodosNivel.isEmpty()) {
             while (!nodosNivel.isEmpty()) {
@@ -438,8 +435,8 @@ public class Tree {
      * Muestra todos los nodos abuelos
      */
     public void mostrarAbuelos() {
-        Stack<Node> nivel = new Stack<Node>();
-        Stack<Node> descendientes = new Stack<Node>();
+        Stack<Node> nivel = new Stack<>();
+        Stack<Node> descendientes = new Stack<>();
         nivel.add(root);
         System.out.println("Abuelos");
         while (!nivel.isEmpty()) {
@@ -462,10 +459,7 @@ public class Tree {
     public boolean esNieto(Node X) {
         Node padre = getPadre(X);
         if (padre != null) {
-            if (getPadre(padre) != null) {
-                return true;
-            }
-            return false;
+            return getPadre(padre) != null;
         }
         return false;
     }
@@ -474,8 +468,8 @@ public class Tree {
      * Muestra a todos los nietos
      */
     public void mostrarNietos() {
-        Stack<Node> nivel = new Stack<Node>();
-        Stack<Node> descendientes = new Stack<Node>();
+        Stack<Node> nivel = new Stack<>();
+        Stack<Node> descendientes = new Stack<>();
         nivel.add(root);
         System.out.print("Nietos");
         while (!nivel.isEmpty()) {
@@ -497,8 +491,8 @@ public class Tree {
     }
 
     public void nroHojas() {
-        Stack<Node> nodosNivel = new Stack<Node>();
-        Stack<Node> nodosDescendientes = new Stack<Node>();
+        Stack<Node> nodosNivel = new Stack<>();
+        Stack<Node> nodosDescendientes = new Stack<>();
         int ch = 0;
         nodosNivel.add(root);
         while (!nodosNivel.isEmpty()) {
@@ -521,8 +515,8 @@ public class Tree {
     }
 
     private int cuantosHay(Node x) {
-        Stack<Node> nivel = new Stack<Node>();
-        Stack<Node> desc = new Stack<Node>();
+        Stack<Node> nivel = new Stack<>();
+        Stack<Node> desc = new Stack<>();
         int ch = 0;
         nivel.add(root);
         while (!nivel.isEmpty()) {
@@ -545,8 +539,8 @@ public class Tree {
 
     public void eliminaRepetidos() {
         Scanner lee = new Scanner(System.in);
-        Stack<Node> nivel = new Stack<Node>();
-        Stack<Node> desc = new Stack<Node>();
+        Stack<Node> nivel = new Stack<>();
+        Stack<Node> desc = new Stack<>();
         nivel.add(root);
         while (!nivel.isEmpty()) {
             while (!nivel.isEmpty()) {
@@ -572,8 +566,8 @@ public class Tree {
     }
 
     public int cuantosExisteNivel(int nivel) {
-        Stack<Node> nodosNivel = new Stack<Node>();
-        Stack<Node> nodosDescendientes = new Stack<Node>();
+        Stack<Node> nodosNivel = new Stack<>();
+        Stack<Node> nodosDescendientes = new Stack<>();
         nodosNivel.add(root);
         int nroNivel = 0;
         int c = 0;
@@ -597,8 +591,8 @@ public class Tree {
     }
 
     private int maxElemNivel() {
-        Stack<Node> nodosNivel = new Stack<Node>();
-        Stack<Node> nodosDescendientes = new Stack<Node>();
+        Stack<Node> nodosNivel = new Stack<>();
+        Stack<Node> nodosDescendientes = new Stack<>();
         nodosNivel.add(root);
         int max = Integer.MIN_VALUE;
         while (!nodosNivel.isEmpty()) {
@@ -623,8 +617,8 @@ public class Tree {
 
     public void nivelesMasNodes() {
         int max = maxElemNivel();
-        Stack<Node> nivel = new Stack<Node>();
-        Stack<Node> des = new Stack<Node>();
+        Stack<Node> nivel = new Stack<>();
+        Stack<Node> des = new Stack<>();
         nivel.add(root);
         int c = 0;
         while (!nivel.isEmpty()) {

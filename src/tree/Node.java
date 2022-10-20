@@ -1,7 +1,6 @@
 package tree;
 
 public class Node {
-
     private Node left;
     private int value;
     private Node right;
