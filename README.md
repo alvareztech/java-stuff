@@ -1,4 +1,6 @@
-# Java Stuff
+<p align="center">
+  <img width="200" height="200" src="/images/java_logo.svg">
+</p>
 
 ## Algorithms
 
