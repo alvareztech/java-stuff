@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="200" height="200" src="/images/java_logo.svg">
+  <img width="120" height="60" src="/images/java_logo.svg">
 </p>
 
 ## Algorithms
