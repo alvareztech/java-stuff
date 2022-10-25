@@ -15,21 +15,21 @@ public class SinglyLinkedList {
 
     public void addFirst(int data) {
         Node n = new Node(data);
-        n.setNext(head);
+        n.next = head;
         head = n;
     }
 
     public void addLast(int data) {
         Node n = new Node(data);
         if (isEmpty()) {
-            n.setNext(head);
+            n.next = head;
             head = n;
         } else {
             Node X = head;
-            while (X.getNext() != null) {
-                X = X.getNext();
+            while (X.next != null) {
+                X = X.next;
             }
-            X.setNext(n);
+            X.next = n;
         }
     }
 
@@ -37,8 +37,8 @@ public class SinglyLinkedList {
         if (head == null) {
             return Integer.MIN_VALUE;
         }
-        int data = head.getData();
-        head = head.getNext();
+        int data = head.data;
+        head = head.next;
         return data;
     }
 
@@ -47,19 +47,19 @@ public class SinglyLinkedList {
             return Integer.MIN_VALUE;
         }
         int data;
-        if (head.getNext() == null) {
-            data = head.getData();
+        if (head.next == null) {
+            data = head.data;
             head = null;
             return data;
         }
         Node x = head;
-        Node y = head.getNext();
-        while (y.getNext() != null) {
+        Node y = head.next;
+        while (y.next != null) {
             x = y;
-            y = y.getNext();
+            y = y.next;
         }
-        data = y.getData();
-        x.setNext(null);
+        data = y.data;
+        x.next = null;
         return data;
     }
 
@@ -67,7 +67,7 @@ public class SinglyLinkedList {
         int counter = 0;
         Node x = head;
         while (x != null) {
-            x = x.getNext();
+            x = x.next;
             counter++;
         }
         return counter;
@@ -87,25 +87,25 @@ public class SinglyLinkedList {
     public void show() {
         Node n = head;
         while (n != null) {
-            System.out.print(" " + n.getData());
-            n = n.getNext();
+            System.out.print(" " + n.data);
+            n = n.next;
         }
         System.out.println();
     }
 
     public void sort() {
         Node n = head;
-        while (n.getNext() != null) {
-            Node y = n.getNext();
+        while (n.next != null) {
+            Node y = n.next;
             while (y != null) {
-                if (n.getData() > y.getData()) {
-                    int aux = n.getData();
-                    n.setData(y.getData());
-                    y.setData(aux);
+                if (n.data > y.data) {
+                    int aux = n.data;
+                    n.data = y.data;
+                    y.data = aux;
                 }
-                y = y.getNext();
+                y = y.next;
             }
-            n = n.getNext();
+            n = n.next;
         }
     }
 }

@@ -19,23 +19,23 @@ public class DoublyLinkedList {
         if (head == null) {
             head = n;
         } else {
-            n.setNext(head);
-            head.setPrevious(n);
+            n.next = head;
+            head.previous = n;
             head = n;
         }
     }
 
     public void addLast(int a) {
-        DoubleNode N = new DoubleNode(a);
+        DoubleNode n = new DoubleNode(a);
         if (head == null) {
-            head = N;
+            head = n;
         } else {
             DoubleNode X = head;
-            while (X.getNext() != null) {
-                X = X.getNext();
+            while (X.next != null) {
+                X = X.next;
             } // now x is the last node
-            X.setNext(N);
-            N.setPrevious(X);
+            X.next = n;
+            n.previous = X;
         }
     }
 
@@ -43,12 +43,12 @@ public class DoublyLinkedList {
         if (head == null) {
             return Integer.MIN_VALUE;
         }
-        int data = head.getData();
-        if (head.getNext() == null) { // one element scenario
+        int data = head.data;
+        if (head.next == null) { // one element scenario
             head = null;
         } else {
-            head = head.getNext();
-            head.setPrevious(null);
+            head = head.next;
+            head.previous = null;
         }
         return data;
     }
@@ -58,18 +58,18 @@ public class DoublyLinkedList {
             return Integer.MIN_VALUE;
         }
         int data;
-        if (head.getNext() == null) {
-            data = head.getData();
+        if (head.next == null) {
+            data = head.data;
             head = null;
             return data;
         }
         DoubleNode x = head;
-        while (x.getNext() != null) {
-            x = x.getNext();
+        while (x.next != null) {
+            x = x.next;
         } // now x is the last node
-        data = x.getData();
-        DoubleNode y = x.getPrevious();
-        y.setNext(null);
+        data = x.data;
+        DoubleNode y = x.previous;
+        y.next = null;
         return data;
     }
 
@@ -77,7 +77,7 @@ public class DoublyLinkedList {
         int counter = 0;
         DoubleNode X = head;
         while (X != null) {
-            X = X.getNext();
+            X = X.next;
             counter++;
         }
         return counter;
@@ -98,12 +98,12 @@ public class DoublyLinkedList {
         if (head == null) {
             System.out.println("Empty list!");
         } else {
-            DoubleNode X = head;
-            while (X != null) {
-                System.out.print(" " + X.getData());
-                X = X.getNext();
+            DoubleNode x = head;
+            while (x != null) {
+                System.out.print(" " + x.data);
+                x = x.next;
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 }
