@@ -23,19 +23,19 @@ public class Tree {
             Node X = root;
             boolean sw = true;
             while (sw) {
-                if (a > X.getValue()) {
-                    if (X.getRight() == null) {//x.der==null
-                        X.setRight(N); // X.der=N
+                if (a > X.value) {
+                    if (X.right == null) {//x.der==null
+                        X.right = N; // X.derN
                         sw = false;
                     } else {
-                        X = X.getRight();
+                        X = X.right;
                     }
                 } else {
-                    if (X.getLeft() == null) {
-                        X.setLeft(N);
+                    if (X.left == null) {
+                        X.left = N;
                         sw = false;
                     } else {
-                        X = X.getLeft();
+                        X = X.left;
                     }
                 }
             }
@@ -49,31 +49,31 @@ public class Tree {
         Stack<Node> pila = new Stack<>();
         Stack<Node> pilaTemporal = new Stack<>();
         System.out.print(" Raiz: ");
-        R.setValue(in.nextInt());
+        R.value = in.nextInt();
         pila.add(R);
         while (!pila.isEmpty()) {
             X = pila.pop();
-            System.out.print(" (" + X.getValue() + ") left node? ");
+            System.out.print(" (" + X.value + ") left node? ");
             String respuesta = in.next();
             if (respuesta.equals("Y")) {
                 Y = new Node();
                 System.out.print("     Left Node: ");
-                Y.setValue(in.nextInt());
-                X.setLeft(Y);
+                Y.value = in.nextInt();
+                X.left = Y;
                 pilaTemporal.add(Y);
             } else {
-                X.setLeft(null);
+                X.left = null;
             }
-            System.out.print(" (" + X.getValue() + ") right node? ");
+            System.out.print(" (" + X.value + ") right node? ");
             respuesta = in.next();
             if (respuesta.equals("Y")) {
                 Y = new Node();
                 System.out.print("     Right Node: ");
-                Y.setValue(in.nextInt());
-                X.setRight(Y);
+                Y.value = in.nextInt();
+                X.right = Y;
                 pilaTemporal.add(Y);
             } else {
-                X.setRight(null);
+                X.right = null;
             }
             StackUtil.move(pila, pilaTemporal);
         }
@@ -87,12 +87,12 @@ public class Tree {
         while (!nodosNivel.isEmpty()) {
             while (!nodosNivel.isEmpty()) {
                 Node X = nodosNivel.pop();
-                System.out.print(" " + X.getValue());
-                if (X.getLeft() != null) {
-                    nodosDescendientes.add(X.getLeft());
+                System.out.print(" " + X.value);
+                if (X.left != null) {
+                    nodosDescendientes.add(X.left);
                 }
-                if (X.getRight() != null) {
-                    nodosDescendientes.add(X.getRight());
+                if (X.right != null) {
+                    nodosDescendientes.add(X.right);
                 }
             }
             StackUtil.move(nodosNivel, nodosDescendientes);
@@ -105,12 +105,12 @@ public class Tree {
         pila.add(root);
         while (!pila.isEmpty()) { // mientras la Stack<Integer> no este vacia.
             Node X = pila.pop();
-            System.out.print(" " + X.getValue());
-            if (X.getRight() != null) {
-                pila.add(X.getRight());
+            System.out.print(" " + X.value);
+            if (X.right != null) {
+                pila.add(X.right);
             }
-            if (X.getLeft() != null) {
-                pila.add(X.getLeft());
+            if (X.left != null) {
+                pila.add(X.left);
             }
         }
     }
@@ -122,12 +122,12 @@ public class Tree {
         while (!pila.isEmpty()) { // mientras la pila de nodos no sea vacia
             while (X != null) {
                 pila.add(X);
-                X = X.getLeft();
+                X = X.left;
             }
             X = pila.pop(); // ahora X es el mas de la izquierda
             if (X != null) {
-                System.out.print(" " + X.getValue());
-                X = X.getRight();
+                System.out.print(" " + X.value);
+                X = X.right;
             }
         }
     }
@@ -139,15 +139,15 @@ public class Tree {
         while (!pila.isEmpty()) {
             while (X != null) {
                 pila.add(X);
-                if (X.getRight() != null) {
-                    pila.add(X.getRight());
+                if (X.right != null) {
+                    pila.add(X.right);
                     pila.add(null);
                 }
-                X = X.getLeft();
+                X = X.left;
             }
             X = pila.pop();
             while (X != null) {
-                System.out.print(" " + X.getValue());
+                System.out.print(" " + X.value);
                 X = pila.pop();
             }
             if (!pila.isEmpty()) {
@@ -158,25 +158,25 @@ public class Tree {
 
     public void preorderTraversal(Node X) {
         if (X != null) {
-            System.out.print(" " + X.getValue());
-            preorderTraversal(X.getLeft());
-            preorderTraversal(X.getRight());
+            System.out.print(" " + X.value);
+            preorderTraversal(X.left);
+            preorderTraversal(X.right);
         }
     }
 
     public void inorderTraversal(Node X) {
         if (X != null) {
-            inorderTraversal(X.getLeft());
-            System.out.print(" " + X.getValue());
-            inorderTraversal(X.getRight());
+            inorderTraversal(X.left);
+            System.out.print(" " + X.value);
+            inorderTraversal(X.right);
         }
     }
 
     public void postorderTraversal(Node X) {
         if (X != null) {
-            postorderTraversal(X.getLeft());
-            postorderTraversal(X.getRight());
-            System.out.print(" " + X.getValue());
+            postorderTraversal(X.left);
+            postorderTraversal(X.right);
+            System.out.print(" " + X.value);
         }
     }
 
@@ -191,17 +191,17 @@ public class Tree {
     public void search(int a) {
         Node X = root;
         while (X != null) {
-            if (a < X.getValue()) {
-                if (X.getLeft() == null) {
+            if (a < X.value) {
+                if (X.left == null) {
                     System.out.println(" > No se encuentra " + a + ".");
                 }
-                X = X.getLeft();
+                X = X.left;
             } else {
-                if (a > X.getValue()) {
-                    if (X.getRight() == null) {
+                if (a > X.value) {
+                    if (X.right == null) {
                         System.out.println(" > No se encuentra " + a + ".");
                     }
-                    X = X.getRight();
+                    X = X.right;
                 } else {
                     System.out.println(" > Se encontro " + a + ".");
                     X = null;
@@ -218,13 +218,13 @@ public class Tree {
             while (!P.isEmpty()) {
                 Node X = P.pop();
                 if (X.isLeaf()) {
-                    System.out.println(" > " + X.getValue());
+                    System.out.println(" > " + X.value);
                 }
-                if (X.getLeft() != null) {
-                    A.add(X.getLeft());
+                if (X.left != null) {
+                    A.add(X.left);
                 }
-                if (X.getRight() != null) {
-                    A.add(X.getRight());
+                if (X.right != null) {
+                    A.add(X.right);
                 }
             }
             StackUtil.move(P, A);
@@ -240,14 +240,14 @@ public class Tree {
         while (!nivel.isEmpty()) {
             while (!nivel.isEmpty()) {
                 Node e = nivel.pop();
-                if (e.getValue() == value) {
+                if (e.value == value) {
                     return e;
                 }
-                if (e.getLeft() != null) {
-                    desc.add(e.getLeft());
+                if (e.left != null) {
+                    desc.add(e.left);
                 }
-                if (e.getRight() != null) {
-                    desc.add(e.getRight());
+                if (e.right != null) {
+                    desc.add(e.right);
                 }
             }
             StackUtil.move(nivel, desc);
@@ -278,22 +278,22 @@ public class Tree {
             while (!niv2.isEmpty()) {
                 Node n1 = niv1.pop();
                 Node n2 = niv2.pop();
-                if (n1.getValue() != n2.getValue()) {
+                if (n1.value != n2.value) {
                     sw = false;
                 }
-                if (n1.getLeft() != null && n2.getLeft() != null) {
-                    des1.add(n1.getLeft());
-                    des2.add(n2.getLeft());
+                if (n1.left != null && n2.left != null) {
+                    des1.add(n1.left);
+                    des2.add(n2.left);
                 } else {
-                    if (n1.getLeft() != null || n2.getLeft() != null) {
+                    if (n1.left != null || n2.left != null) {
                         sw = false;
                     }
                 }
-                if (n1.getRight() != null && n2.getRight() != null) {
-                    des1.add(n1.getRight());
-                    des2.add(n2.getRight());
+                if (n1.right != null && n2.right != null) {
+                    des1.add(n1.right);
+                    des2.add(n2.right);
                 } else {
-                    if (n1.getRight() != null || n2.getRight() != null) {
+                    if (n1.right != null || n2.right != null) {
                         sw = false;
                     }
                 }
@@ -318,17 +318,17 @@ public class Tree {
         while (!nodosNivel.isEmpty()) {
             while (!nodosNivel.isEmpty()) {
                 Node e = nodosNivel.pop();
-                if (e.getLeft() != null) {
-                    if (e.getLeft() == X) {
+                if (e.left != null) {
+                    if (e.left == X) {
                         return e;
                     }
-                    nodosDescendientes.add(e.getLeft());
+                    nodosDescendientes.add(e.left);
                 }
-                if (e.getRight() != null) {
-                    if (e.getRight() == X) {
+                if (e.right != null) {
+                    if (e.right == X) {
                         return e;
                     }
-                    nodosDescendientes.add(e.getRight());
+                    nodosDescendientes.add(e.right);
                 }
             }
             StackUtil.move(nodosNivel, nodosDescendientes);
@@ -339,10 +339,10 @@ public class Tree {
     public void eliTerminal(Node x) {
         if (getPadre(x) != null) {
             Node p = getPadre(x);
-            if (p.getRight() == x) {
-                p.setRight(null);
+            if (p.right == x) {
+                p.right = null;
             } else {
-                p.setLeft(null);
+                p.left = null;
             }
         }
         if (x == root) {
@@ -353,37 +353,37 @@ public class Tree {
     public void eliUnDesc(Node x) {
         if (getPadre(x) != null) {
             Node p = getPadre(x);
-            if (p.getLeft() == x) {
-                if (x.getLeft() != null) {
-                    p.setLeft(x.getLeft());
+            if (p.left == x) {
+                if (x.left != null) {
+                    p.left = x.left;
                 } else {
-                    p.setRight(x.getRight());
+                    p.right = x.right;
                 }
             } else {
-                if (x.getRight() != null) {
-                    p.setRight(x.getRight());
+                if (x.right != null) {
+                    p.right = x.right;
                 } else {
-                    p.setRight(x.getLeft());
+                    p.right = x.left;
                 }
             }
         } else {
             if (x == root) {
-                if (x.getRight() != null) {
-                    root = x.getRight();
+                if (x.right != null) {
+                    root = x.right;
                 } else {
-                    root = x.getLeft();
+                    root = x.left;
                 }
             }
         }
     }
 
     public void eliDosDesc(Node x) {
-        Node r = x.getRight();
-        while (r.getLeft() != null) {
-            r = r.getLeft();
+        Node r = x.right;
+        while (r.left != null) {
+            r = r.left;
         }
-        x.setValue(r.getValue());
-        if (r.getRight() == null && r.getLeft() == null) {
+        x.value = r.value;
+        if (r.right == null && r.left == null) {
             eliTerminal(r);
         } else {
             eliUnDesc(r);
@@ -393,10 +393,10 @@ public class Tree {
     public void eliminar(int id) {
         if (exist(id) != null) {
             Node x = exist(id);
-            if (x.getRight() == null && x.getLeft() == null) {
+            if (x.right == null && x.left == null) {
                 eliTerminal(x);
             } else {
-                if (x.getRight() != null && x.getLeft() != null) {
+                if (x.right != null && x.left != null) {
                     eliDosDesc(x);
                 } else {
                     eliUnDesc(x);
@@ -406,22 +406,22 @@ public class Tree {
     }
 
     public boolean tieneNieto(Node X) {
-        if (X.getRight() != null) {
-            if (X.getRight().getRight() != null) {
+        if (X.right != null) {
+            if (X.right.right != null) {
                 return true;
             } else {
-                if (X.getRight().getLeft() != null) {
+                if (X.right.left != null) {
                     return true;
                 } else {
                     return false;
                 }
             }
         }
-        if (X.getLeft() != null) {
-            if (X.getLeft().getRight() != null) {
+        if (X.left != null) {
+            if (X.left.right != null) {
                 return true;
             } else {
-                if (X.getLeft().getLeft() != null) {
+                if (X.left.left != null) {
                     return true;
                 } else {
                     return false;
@@ -443,13 +443,13 @@ public class Tree {
             while (!nivel.isEmpty()) {
                 Node x = nivel.pop();
                 if (tieneNieto(x)) {
-                    System.out.print(" (" + x.getValue() + ")");
+                    System.out.print(" (" + x.value + ")");
                 }
-                if (x.getLeft() != null) {
-                    descendientes.add(x.getLeft());
+                if (x.left != null) {
+                    descendientes.add(x.left);
                 }
-                if (x.getRight() != null) {
-                    descendientes.add(x.getRight());
+                if (x.right != null) {
+                    descendientes.add(x.right);
                 }
             }
             StackUtil.move(nivel, descendientes);
@@ -476,13 +476,13 @@ public class Tree {
             while (!nivel.isEmpty()) {
                 Node X = nivel.pop();
                 if (esNieto(X)) {
-                    System.out.print(" (" + X.getValue() + ")");
+                    System.out.print(" (" + X.value + ")");
                 }
-                if (X.getLeft() != null) {
-                    descendientes.add(X.getLeft());
+                if (X.left != null) {
+                    descendientes.add(X.left);
                 }
-                if (X.getRight() != null) {
-                    descendientes.add(X.getRight());
+                if (X.right != null) {
+                    descendientes.add(X.right);
                 }
             }
             StackUtil.move(nivel, descendientes);
@@ -498,14 +498,14 @@ public class Tree {
         while (!nodosNivel.isEmpty()) {
             while (!nodosNivel.isEmpty()) {
                 Node e = nodosNivel.pop();
-                if (e.getLeft() == null && e.getRight() == null) {
+                if (e.left == null && e.right == null) {
                     ch++;
                 } else {
-                    if (e.getRight() != null) {
-                        nodosDescendientes.add(e.getRight());
+                    if (e.right != null) {
+                        nodosDescendientes.add(e.right);
                     }
-                    if (e.getLeft() != null) {
-                        nodosDescendientes.add(e.getLeft());
+                    if (e.left != null) {
+                        nodosDescendientes.add(e.left);
                     }
                 }
             }
@@ -522,14 +522,14 @@ public class Tree {
         while (!nivel.isEmpty()) {
             while (!nivel.isEmpty()) {
                 Node e = nivel.pop();
-                if (e.getValue() == x.getValue()) {
+                if (e.value == x.value) {
                     ch++;
                 }
-                if (e.getRight() != null) {
-                    desc.add(e.getRight());
+                if (e.right != null) {
+                    desc.add(e.right);
                 }
-                if (e.getLeft() != null) {
-                    desc.add(e.getLeft());
+                if (e.left != null) {
+                    desc.add(e.left);
                 }
             }
             StackUtil.move(nivel, desc);
@@ -547,13 +547,13 @@ public class Tree {
                 Node e = nivel.pop();
                 int n = cuantosHay(e);
                 if (n > 1) {
-                    eliminar(e.getValue());
+                    eliminar(e.value);
                 }
-                if (e.getRight() != null) {
-                    desc.add(e.getRight());
+                if (e.right != null) {
+                    desc.add(e.right);
                 }
-                if (e.getLeft() != null) {
-                    desc.add(e.getLeft());
+                if (e.left != null) {
+                    desc.add(e.left);
                 }
             }
             StackUtil.move(nivel, desc);
@@ -577,11 +577,11 @@ public class Tree {
                 if (nroNivel == nivel) {
                     c++;
                 }
-                if (e.getLeft() != null) {
-                    nodosDescendientes.add(e.getLeft());
+                if (e.left != null) {
+                    nodosDescendientes.add(e.left);
                 }
-                if (e.getRight() != null) {
-                    nodosDescendientes.add(e.getRight());
+                if (e.right != null) {
+                    nodosDescendientes.add(e.right);
                 }
             }
             nroNivel++;
@@ -600,11 +600,11 @@ public class Tree {
             while (!nodosNivel.isEmpty()) {
                 Node e = nodosNivel.pop();
                 c++;
-                if (e.getLeft() != null) {
-                    nodosDescendientes.add(e.getLeft());
+                if (e.left != null) {
+                    nodosDescendientes.add(e.left);
                 }
-                if (e.getRight() != null) {
-                    nodosDescendientes.add(e.getRight());
+                if (e.right != null) {
+                    nodosDescendientes.add(e.right);
                 }
             }
             StackUtil.move(nodosNivel, nodosDescendientes);
@@ -630,13 +630,13 @@ public class Tree {
             while (!nivel.isEmpty()) {
                 Node e = nivel.pop();
                 if (sw) {
-                    System.out.print(e.getValue() + "\t");
+                    System.out.print(e.value + "\t");
                 }
-                if (e.getLeft() != null) {
-                    des.add(e.getLeft());
+                if (e.left != null) {
+                    des.add(e.left);
                 }
-                if (e.getRight() != null) {
-                    des.add(e.getRight());
+                if (e.right != null) {
+                    des.add(e.right);
                 }
             }
             c++;
@@ -653,11 +653,11 @@ public class Tree {
             while (!nivel.isEmpty()) {
                 Node x = nivel.pop();
                 c++;
-                if (x.getLeft() != null) {
-                    desc.add(x.getLeft());
+                if (x.left != null) {
+                    desc.add(x.left);
                 }
-                if (x.getRight() != null) {
-                    desc.add(x.getRight());
+                if (x.right != null) {
+                    desc.add(x.right);
                 }
             }
             StackUtil.move(nivel, desc);
@@ -666,14 +666,14 @@ public class Tree {
     }
 
     public void interRaizMasIzquierdo() {
-        if (root.getLeft() != null) {
-            Node t = root.getLeft();
-            while (t.getLeft() != null) {
-                t = t.getLeft();
+        if (root.left != null) {
+            Node t = root.left;
+            while (t.left != null) {
+                t = t.left;
             }
-            int aux = root.getValue();
-            root.setValue(t.getValue());
-            t.setValue(aux);
+            int aux = root.value;
+            root.value = t.value;
+            t.value = aux;
         }
     }
 }

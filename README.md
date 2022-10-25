@@ -22,4 +22,5 @@ Own implementations:
 
 ### Trees
 
-[Tree class](/src/tree/Tree.java)
+- [Tree](/src/tree/Tree.java)
+    - [Node](/src/tree/Node.java)
