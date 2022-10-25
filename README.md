@@ -8,6 +8,13 @@
 
 ## Data Structures
 
+### Linked Lists
+
+- [SinglyLinkedList](/src/linkedlist/SinglyLinkedList.java)
+    - [Node](/src/linkedlist/Node.java)
+- [DoublyLinkedList](/src/linkedlist/DoublyLinkedList.java)
+    - [DoubleNode](/src/linkedlist/DoubleNode.java)
+
 ### Trees
 
 [Tree class](/src/tree/Tree.java)
