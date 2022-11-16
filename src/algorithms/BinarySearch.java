@@ -3,15 +3,16 @@ package algorithms;
 public class BinarySearch {
 
     static int binarySearch(int[] numbers, int target) {
-        int index = 0, r = numbers.length;
-        while (index < r) {
-            int middle = (index + r) / 2;
+        int left = 0;
+        int right = numbers.length;
+        while (left < right) {
+            int middle = (left + right) / 2;
             if (numbers[middle] < target)
-                index = middle + 1;
+                left = middle + 1;
             else
-                r = middle;
+                right = middle;
         }
-        return index;
+        return left;
     }
 
     public static void main(String[] args) {
